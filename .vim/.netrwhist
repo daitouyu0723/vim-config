@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/wangwei/dev/www/ganji/ganji_online/wanted_backend/app/templates/WantedPost'
+let g:netrw_dirhist_2='/home/wangwei/dev/www/ganji/ganji_online/ganji_v5/app/vip/ajax/wanted'
+let g:netrw_dirhist_3='/home/wangwei/dev/www/ganji/ganji_online/wanted_backend/app/templates/ResumeReceived'
+let g:netrw_dirhist_4='/home/wangwei/dev/www/ganji/ganji_online/static/att/project/olympic2012'
+let g:netrw_dirhist_5='/home/wangwei/dev/www/ganji/ganji_online/static/att/project/spokesman'
+let g:netrw_dirhist_6='/home/wangwei/dev/www/ganji/ganji_online/ganji_v5/app/company/include'
+let g:netrw_dirhist_7='/home/wangwei/dev/www/ganji/ganji_online/ganji_v5/template/footer_js/wanted_findjob'
