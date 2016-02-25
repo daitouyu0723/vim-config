@@ -1,5 +1,9 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
+ 
+if &t_Co > 1
+    syntax enable
+endif
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -44,12 +48,12 @@ set hlsearch
 set cursorline
 
 
-"colorscheme molokai
-"let g:molokai_original = 1
+colorscheme molokai
+let g:molokai_original = 1
 "colorscheme lucius
 "LuciusLight 
 "colorscheme diablo3
-colorscheme jellybeans
+"colorscheme jellybeans
 
 map <F6> :TlistToggle<CR>
 map <F8> :NERDTreeToggle<CR>
