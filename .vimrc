@@ -1,4 +1,9 @@
+"switch bash shell
+set shell=/bin/sh
+
 set nocompatible              " be iMproved, required
+set showmatch 
+set cc=120
 filetype off                  " required
  
 if &t_Co > 1
@@ -15,13 +20,15 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'snipMate'
 Plugin 'molokai'
+Plugin 'jellybeans.vim'
 Plugin 'AutoComplPop'
 Plugin 'php.vim'
 Plugin 'AutoClose'
 Plugin 'taglist.vim'
 Plugin 'The-NERD-tree'
-Plugin 'nanotech/jellybeans.vim'
 Plugin 'fatih/vim-go'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'abolish.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -52,8 +59,9 @@ colorscheme molokai
 let g:molokai_original = 1
 "colorscheme lucius
 "LuciusLight 
-"colorscheme diablo3
+"orscheme diablo3
 "colorscheme jellybeans
+"colorscheme hybrid
 
 map <F6> :TlistToggle<CR>
 map <F8> :NERDTreeToggle<CR>
@@ -65,6 +73,9 @@ vnoremap <leader>d "_d
 "replace currently selected text with default register
 "without yanking it
 vnoremap <leader>p "_dP
+
+nmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
 
 if !exists('g:AutoComplPop_Behavior')
     let g:AutoComplPop_Behavior = {}
