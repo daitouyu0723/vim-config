@@ -29,6 +29,8 @@ Plugin 'The-NERD-tree'
 Plugin 'fatih/vim-go'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'abolish.vim'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'SyntaxMotion.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -55,12 +57,12 @@ set hlsearch
 set cursorline
 
 
-colorscheme molokai
-let g:molokai_original = 1
+"colorscheme molokai
+"let g:molokai_original = 1
 "colorscheme lucius
 "LuciusLight 
 "orscheme diablo3
-"colorscheme jellybeans
+colorscheme jellybeans
 "colorscheme hybrid
 
 map <F6> :TlistToggle<CR>
@@ -162,3 +164,8 @@ function TabLine()
     endif
     return s
 endfunction
+syntax on
+au BufRead,BufNewFile *.go set filetype=go
+colorscheme molokai
+let g:go_fmt_command = "goimports"
+let g:vim_markdown_folding_disabled = 1
