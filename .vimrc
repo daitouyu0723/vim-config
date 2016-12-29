@@ -21,7 +21,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'snipMate'
 Plugin 'molokai'
 Plugin 'jellybeans.vim'
-Plugin 'AutoComplPop'
+Plugin 'Shougo/neocomplete.vim'
 Plugin 'php.vim'
 Plugin 'AutoClose'
 Plugin 'taglist.vim'
@@ -29,6 +29,10 @@ Plugin 'The-NERD-tree'
 Plugin 'fatih/vim-go'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'abolish.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'garyburd/go-explorer'
+Plugin 'klen/python-mode'
+Plugin 'Emmet.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -64,6 +68,7 @@ let g:molokai_original = 1
 "colorscheme hybrid
 
 map <F6> :TlistToggle<CR>
+nmap <F7> :TagbarToggle<CR>
 map <F8> :NERDTreeToggle<CR>
 
 let mapleader=";"
@@ -76,6 +81,10 @@ vnoremap <leader>p "_dP
 
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-p>"
+let g:UltiSnipsJumpBackwardTrigger="<c-n>"
 
 if !exists('g:AutoComplPop_Behavior')
     let g:AutoComplPop_Behavior = {}
@@ -162,3 +171,6 @@ function TabLine()
     endif
     return s
 endfunction
+
+let g:go_fmt_command = "goimports"
+let g:neocomplete#enable_at_startup = 1
