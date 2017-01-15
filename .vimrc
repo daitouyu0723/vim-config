@@ -21,7 +21,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'snipMate'
 Plugin 'molokai'
 Plugin 'jellybeans.vim'
-Plugin 'Shougo/neocomplete.vim'
+Plugin 'jycggyh/AutoCompPop'
+" Plugin 'Shougo/neocomplete.vim'
 Plugin 'php.vim'
 Plugin 'AutoClose'
 Plugin 'taglist.vim'
@@ -66,7 +67,7 @@ set cursorline
 "colorscheme lucius
 "LuciusLight 
 "orscheme diablo3
-colorscheme jellybeans
+"colorscheme jellybeans
 "colorscheme hybrid
 
 map <F6> :TlistToggle<CR>
@@ -173,8 +174,10 @@ function TabLine()
     endif
     return s
 endfunction
+" fix vim-go bug
 syntax on
 au BufRead,BufNewFile *.go set filetype=go
 colorscheme molokai
 let g:go_fmt_command = "goimports"
-let g:vim_markdown_folding_disabled = 1
+" pman
+autocmd FileType php setlocal keywordprg=pman
