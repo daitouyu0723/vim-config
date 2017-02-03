@@ -21,8 +21,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'snipMate'
 Plugin 'molokai'
 Plugin 'jellybeans.vim'
-Plugin 'jycggyh/AutoCompPop'
-" Plugin 'Shougo/neocomplete.vim'
+Plugin 'Shougo/neocomplete.vim'
 Plugin 'php.vim'
 Plugin 'AutoClose'
 Plugin 'taglist.vim'
@@ -34,8 +33,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'garyburd/go-explorer'
 Plugin 'klen/python-mode'
 Plugin 'Emmet.vim'
-Plugin 'derekwyatt/vim-scala'
-Plugin 'SyntaxMotion.vim'
+Plugin 'bling/vim-bufferline'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -58,17 +56,18 @@ set ts=4 " set 4 space instead tab
 set sw=4 " set shiftwidth
 set expandtab
 set autoindent
-set hlsearch
 set cursorline
+set spell
+set hls is
+set showtabline=0
 
 
-"colorscheme molokai
-"let g:molokai_original = 1
-"colorscheme lucius
-"LuciusLight 
-"orscheme diablo3
+colorscheme molokai
+let g:molokai_original = 1
 "colorscheme jellybeans
-"colorscheme hybrid
+
+"bufferline
+let g:bufferline_inactive_highlight = 'StatusLineNC'
 
 map <F6> :TlistToggle<CR>
 nmap <F7> :TagbarToggle<CR>
@@ -85,99 +84,9 @@ vnoremap <leader>p "_dP
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
 
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-p>"
-let g:UltiSnipsJumpBackwardTrigger="<c-n>"
-
-if !exists('g:AutoComplPop_Behavior')
-    let g:AutoComplPop_Behavior = {}
-    let g:AutoComplPop_Behavior['php'] = []
-    call add(g:AutoComplPop_Behavior['php'], {
-        \   'command'   : "\<C-x>\<C-o>", 
-        \   'pattern'   : printf('\(->\|::\|\$\)\k\{%d,}$', 0),
-        \   'repeat'    : 0,
-        \})
-endif
-
 if ! has("gui_running") 
     set t_Co=256 
 endif 
 
-"tab number
-set tabline=%!TabLine()  " custom tab pages line
-function TabLine()
-    let s = '' " complete tabline goes here
-    " loop through each tab page
-    for t in range(tabpagenr('$'))
-        " set highlight
-        if t + 1 == tabpagenr()
-            let s .= '%#TabLineSel#'
-        else
-            let s .= '%#TabLine#'
-        endif
-        " set the tab page number (for mouse clicks)
-        let s .= '%' . (t + 1) . 'T'
-        let s .= ' '
-        " set page number string
-        let s .= t + 1 . ' '
-        " get buffer names and statuses
-        let n = ''      "temp string for buffer names while we loop and check buftype
-        let m = 0       " &modified counter
-        let bc = len(tabpagebuflist(t + 1))     "counter to avoid last ' '
-        " loop through each buffer in a tab
-        for b in tabpagebuflist(t + 1)
-            " buffer types: quickfix gets a [Q], help gets [H]{base fname}
-            " others get 1dir/2dir/3dir/fname shortened to 1/2/3/fname
-            if getbufvar( b, "&buftype" ) == 'help'
-                let n .= '[H]' . fnamemodify( bufname(b), ':t:s/.txt$//' )
-            elseif getbufvar( b, "&buftype" ) == 'quickfix'
-                let n .= '[Q]'
-            else
-                let n .= pathshorten(bufname(b))
-            endif
-            " check and ++ tab's &modified count
-            if getbufvar( b, "&modified" )
-                let m += 1
-            endif
-            " no final ' ' added...formatting looks better done later
-            if bc > 1
-                let n .= ' '
-            endif
-            let bc -= 1
-        endfor
-        " add modified label [n+] where n pages in tab are modified
-        if m > 0
-            let s .= '[' . m . '+]'
-        endif
-        " select the highlighting for the buffer names
-        " my default highlighting only underlines the active tab
-        " buffer names.
-        if t + 1 == tabpagenr()
-            let s .= '%#TabLineSel#'
-        else
-            let s .= '%#TabLine#'
-        endif
-        " add buffer names
-        if n == ''
-            let s.= '[New]'
-        else
-            let s .= n
-        endif
-        " switch to no underlining and add final space to buffer list
-        let s .= ' '
-    endfor
-    " after the last tab fill with TabLineFill and reset tab page nr
-    let s .= '%#TabLineFill#%T'
-    " right-align the label to close the current tab page
-    if tabpagenr('$') > 1
-        let s .= '%=%#TabLineFill#X'
-    endif
-    return s
-endfunction
-" fix vim-go bug
-syntax on
-au BufRead,BufNewFile *.go set filetype=go
-colorscheme molokai
 let g:go_fmt_command = "goimports"
-" pman
-autocmd FileType php setlocal keywordprg=pman
+let g:neocomplete#enable_at_startup = 1
