@@ -21,7 +21,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'snipMate'
 Plugin 'molokai'
 Plugin 'jellybeans.vim'
-Plugin 'Shougo/neocomplete.vim'
 Plugin 'php.vim'
 Plugin 'AutoClose'
 Plugin 'taglist.vim'
@@ -33,7 +32,8 @@ Plugin 'majutsushi/tagbar'
 Plugin 'garyburd/go-explorer'
 Plugin 'klen/python-mode'
 Plugin 'Emmet.vim'
-Plugin 'bling/vim-bufferline'
+Plugin 'AutoComplPop'
+Plugin 'minibufexpl.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -66,9 +66,6 @@ colorscheme molokai
 let g:molokai_original = 1
 "colorscheme jellybeans
 
-"bufferline
-let g:bufferline_inactive_highlight = 'StatusLineNC'
-
 map <F6> :TlistToggle<CR>
 nmap <F7> :TagbarToggle<CR>
 map <F8> :NERDTreeToggle<CR>
@@ -89,4 +86,12 @@ if ! has("gui_running")
 endif 
 
 let g:go_fmt_command = "goimports"
-let g:neocomplete#enable_at_startup = 1
+
+" miniBufExpl
+let g:miniBufExplMapWindowNavVim = 1 
+let g:miniBufExplMapWindowNavArrows = 1 
+let g:miniBufExplMapCTabSwitchBufs = 1 
+let g:miniBufExplModSelTarget = 1
+
+" pman
+autocmd FileType php setlocal keywordprg=pman
