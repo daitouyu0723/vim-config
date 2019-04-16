@@ -3,7 +3,7 @@ set shell=/bin/sh
 
 set nocompatible              " be iMproved, required
 set showmatch 
-set cc=120
+set cc=120 
 filetype off                  " required
  
 if &t_Co > 1
@@ -25,16 +25,18 @@ Plugin 'php.vim'
 Plugin 'AutoClose'
 Plugin 'taglist.vim'
 Plugin 'The-NERD-tree'
+Plugin 'yaml.vim'
 Plugin 'fatih/vim-go'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'bogado/file-line'
 Plugin 'abolish.vim'
 Plugin 'majutsushi/tagbar'
-Plugin 'garyburd/go-explorer'
-Plugin 'klen/python-mode'
+Plugin 'joshuarubin/go-explorer'
 Plugin 'Emmet.vim'
 Plugin 'AutoComplPop'
 Plugin 'daitouyu0723/TabNumber.vim'
+Plugin 'python-mode/python-mode'
+Plugin 'tpope/vim-surround'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -58,14 +60,15 @@ set sw=4 " set shiftwidth
 set expandtab
 set autoindent
 set cursorline
-set spell
 set hls is
 
 
 colorscheme molokai
-let g:molokai_original = 1
+"let g:molokai_original = 1
 "colorscheme jellybeans
 
+map <F3> :GoAddTags 
+map <F4> :GoRemoveTags 
 map <F6> :TlistToggle<CR>
 nmap <F7> :TagbarToggle<CR>
 map <F8> :NERDTreeToggle<CR>
@@ -77,15 +80,30 @@ vnoremap <leader>d "_d
 "replace currently selected text with default register
 "without yanking it
 vnoremap <leader>p "_dP
+"python-mode
+let g:pymode_rope_goto_definition_bind = '<C-c>g'
+let g:pymode_rope_goto_definition_cmd = 'vnew'
 
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
+
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 
 if ! has("gui_running") 
     set t_Co=256 
 endif 
 
 let g:go_fmt_command = "goimports"
+let g:go_list_type = "locationlist"
+let g:go_list_type_commands = {"GoBuild": "quickfix"}
+let g:go_list_autoclose = 1
 
 " pman
 autocmd FileType php setlocal keywordprg=pman
+
+" last position
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
